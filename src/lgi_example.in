@@ -2,25 +2,27 @@
 CONFIG = {
   name = "@NAME@",
   version = "@VERSION@",
-  libdir = "@libdir@",
-  datadir = "@datadir@",
-  moduledir = "@moduledir@",
+  dirs = {
+  	lib = "@libdir@",
+  	data = "@datadir@",
+  	module = "@moduledir@",
+  	pkg = "@pkgdatadir@",
+  },
   resfile = "@pkgdatadir@/@NAME@.gresource",
-  pkgdatadir = "@pkgdatadir@",
 }
 
 package.path = table.concat({
-	CONFIG.moduledir .. "/?.lua",
-	CONFIG.moduledir .. "/?/init.lua",
-	CONFIG.libdir .. "/lua/5.1/?.lua",
-	CONFIG.libdir .. "/lua/5.1/?/init.lua",
-	CONFIG.datadir .. "/lua/5.1/?.lua",
-	CONFIG.datadir .. "/lua/5.1/?/init.lua",
+	CONFIG.dirs.module .. "/?.lua",
+	CONFIG.dirs.module .. "/?/init.lua",
+	CONFIG.dirs.lib .. "/lua/5.1/?.lua",
+	CONFIG.dirs.lib .. "/lua/5.1/?/init.lua",
+	CONFIG.dirs.data .. "/lua/5.1/?.lua",
+	CONFIG.dirs.data .. "/lua/5.1/?/init.lua",
 	package.path
 }, ";")
 package.cpath = table.concat({
-	CONFIG.libdir .. "/lua/5.1/?.so",
-	CONFIG.datadir .. "/lua/5.1/?.so",
+	CONFIG.dirs.lib .. "/lua/5.1/?.so",
+	CONFIG.dirs.data .. "/lua/5.1/?.so",
 	package.cpatch
 }, ";")
 
@@ -30,7 +32,7 @@ local Gio = lgi.Gio
 resource = lgi.assert(Gio.Resource.load(CONFIG.resfile))
 
 assert(loadfile(
-	CONFIG.moduledir .. "/init.lua", 
+	CONFIG.dirs.module .. "/init.lua", 
 	"tb", setmetatable({
 		CONFIG = CONFIG,
 	},

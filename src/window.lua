@@ -18,7 +18,12 @@ end
 
 function UI.about_button:on_clicked()
 	print("About button clicked")
-	UI.about_window:show()
+	local dialog = Gtk.AboutDialog {
+		program_name = CONFIG.name,
+		version = CONFIG.version,
+		website = "https://github.com/MrSyabro/lgi_example"
+	}
+	dialog:present()
 end
 
 return UI.Window
