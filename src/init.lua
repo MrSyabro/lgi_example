@@ -1,8 +1,9 @@
 local lgi = require("lgi")
 local Gtk = lgi.require("Gtk", "4.0")
+local Adw = lgi.Adw
 local Gio = lgi.Gio
 
-local app = Gtk.Application {
+local app = Adw.Application {
 	application_id = "org.example.App"
 }
 
