@@ -1,0 +1,37 @@
+#!@LUAJIT@
+CONFIG = {
+  name = "@NAME@",
+  version = "@VERSION@",
+  libdir = "@libdir@",
+  datadir = "@datadir@",
+  moduledir = "@moduledir@",
+  resfile = "@pkgdatadir@/@NAME@.gresource",
+  pkgdatadir = "@pkgdatadir@",
+}
+
+package.path = table.concat({
+	CONFIG.moduledir .. "/?.lua",
+	CONFIG.moduledir .. "/?/init.lua",
+	CONFIG.libdir .. "/lua/5.1/?.lua",
+	CONFIG.libdir .. "/lua/5.1/?/init.lua",
+	CONFIG.datadir .. "/lua/5.1/?.lua",
+	CONFIG.datadir .. "/lua/5.1/?/init.lua",
+	package.path
+}, ";")
+package.cpath = table.concat({
+	CONFIG.libdir .. "/lua/5.1/?.so",
+	CONFIG.datadir .. "/lua/5.1/?.so",
+	package.cpatch
+}, ";")
+
+local lgi = require("lgi")
+local Gio = lgi.Gio
+
+resource = lgi.assert(Gio.Resource.load(CONFIG.resfile))
+
+assert(loadfile(
+	CONFIG.moduledir .. "/init.lua", 
+	"tb", setmetatable({
+		CONFIG = CONFIG,
+	},
+{__index = _G})))()
