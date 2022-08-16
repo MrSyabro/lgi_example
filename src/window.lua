@@ -19,6 +19,9 @@ end
 function UI.about_button:on_clicked()
 	print("About button clicked")
 	local dialog = Gtk.AboutDialog {
+		authors = {"Alexandr"},
+                transient_for = self,
+                modal = true,
 		program_name = CONFIG.name,
 		version = CONFIG.version,
 		website = "https://github.com/MrSyabro/lgi_example"

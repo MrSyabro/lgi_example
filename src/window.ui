@@ -18,6 +18,11 @@
           <object class="GtkLabel">
             <property name="justify">center</property>
             <property name="label">Lua LGI Example</property>
+            <attributes>
+              <attribute name="font-desc" value="Cantarell 22"/>
+              <attribute name="weight" value="bold"/>
+              <attribute name="underline" value="True"/>
+            </attributes>
           </object>
         </child>
         <child>
@@ -25,32 +30,28 @@
             <property name="label">Этот пример написан на Lua с использованием LGI библиотеки. Упакованый в Flatpak.</property>
             <property name="use-underline">True</property>
             <property name="vexpand">True</property>
+            <property name="wrap">True</property>
           </object>
         </child>
         <child>
           <object class="GtkBox">
             <property name="homogeneous">True</property>
             <property name="margin-bottom">6</property>
-            <property name="margin-end">6</property>
-            <property name="margin-start">6</property>
             <property name="margin-top">6</property>
-            <property name="spacing">6</property>
             <property name="vexpand-set">True</property>
             <child>
               <object class="GtkButton" id="source_button">
                 <property name="label">LGI Source</property>
-                <property name="margin-bottom">6</property>
                 <property name="margin-end">6</property>
                 <property name="margin-start">6</property>
-                <property name="margin-top">6</property>
                 <property name="vexpand">True</property>
               </object>
             </child>
             <child>
               <object class="GtkButton" id="about_button">
                 <property name="label">About</property>
-                <property name="margin-bottom">6</property>
-                <property name="margin-top">6</property>
+                <property name="margin-end">6</property>
+                <property name="margin-start">6</property>
                 <property name="vexpand">True</property>
               </object>
             </child>
