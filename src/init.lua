@@ -1,5 +1,5 @@
 local lgi = require("lgi")
-local Gtk = lgi.require("Gtk", "3.0")
+local Gtk = lgi.require("Gtk", "4.0")
 local Gio = lgi.Gio
 
 local app = Gtk.Application {
